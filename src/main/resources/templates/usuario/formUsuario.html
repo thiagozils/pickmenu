@@ -2,25 +2,46 @@
 <html xmlns:th="http://thymeleaf.org"
 xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
 
-<head>
+<head th:include="fragments/header :: head (title='Cadastro de Usuário')">
 <meta charset="UTF-8" />
-<title>Cadastro Usuário</title>
+
+<link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
 
-<h1>Cadastro Usuário</h1>
+<div th:replace="fragments/header :: header">&nbsp;</div>
 
-<form method="post" >
+<div class="row">
+ <div class="col-md-6" id="centralize">
+<h4>Cadastro de Usuário</h4>
+<form method="post">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="name">Nome</label>
+      <input type="text" value="" name="nome" id="name" class="form-control" placeholder="Nome">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Senha</label>
+      <input type="password" value="" name="senha" class="form-control" placeholder="Senha">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" value="" name="email" id="email" class="form-control" placeholder="email@dominio.com">
+  </div>
 
-
-Nome : <input type="text" value="" name="nome" id="name" >
-Email : <input type="text" value="" name="email" >
-Senha : <input type="password" value="" name="senha">
-
-<button type="submit">Salvar</button>
+  <button type="submit" class="btn btn-primary">Salvar</button>
+   <a class="btn btn-light">Voltar</a>
 </form>
 
-<h4><a href="/usuarios" > Voltar</a></h4>
+</div>
+
+</div>
+
+
+
+
+
 </body>
 
 

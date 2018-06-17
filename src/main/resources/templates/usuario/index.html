@@ -1,41 +1,61 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
-xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
 
-<head>
-<title>Usuários</title>
+<head th:include="fragments/header :: head (title='/Usuários')">
 <meta charset="UTF-8" />
 
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
 
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 </head>
 <body>
 
-<h3>Usuários</h3>
+	<div th:replace="fragments/header :: header">&nbsp;</div>
 
-<div th:each="usuario : ${usuarios}">
 
-	<div class="row">
-		<p><span th:text="${usuario.id}"></span>  </p>
-		<p><span th:text="${usuario.nome}"></span>  </p>
-		<p><span th:text="${usuario.email}"></span>  </p>
-		<p><span th:text="${usuario.senha}"></span>  </p>
-		<a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('UC#deletarUsuario').arg(0, usuario.id)).build()}"><i class="material-icons left">delete</i></a>
-		<a  th:href="@{'/editarUsuario?codigo=' + ${usuario.id}}">Editar</a>
-		
-		
+
+	<div class="container">
+		<div class="" id="centralize">
+			<h4>Usuários</h4>
+			<table class="table table-striped custab">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Email</th>
+						<th>Senha</th>
+						<th style="text-align: center">Ação</th>
+					</tr>
+				</thead>
+				<tr th:each="usuario : ${usuarios}">
+					<td><span th:text="${usuario.id}"></span></td>
+					<td><span th:text="${usuario.nome}"></span></td>
+					<td><span th:text="${usuario.email}"></span></td>
+					<td><span th:text="${usuario.senha}"></span></td>
+					<td class="text-center"><a class='btn btn-info btn-xs'
+						th:href="@{'/editarUsuario?codigo=' + ${usuario.id}}"><span
+							class="glyphicon glyphicon-edit"></span> Edit</a> <a
+						class="btn btn-danger btn-xs"
+						th:href="${(#mvc.url('UC#deletarUsuario').arg(0, usuario.id)).build()}">
+						<span class="glyphicon glyphicon-remove"></span> Del</a></td>
+				</tr>
+
+
+			</table>
+			
+							<a href="/cadastrarUsuario"
+					class="btn btn-primary btn-xs pull-right"><b>+</b> Cadastrar</a>
+			
+		</div>
+
 	</div>
-
-</div>
-
-
-<h4><a href="/cadastrarUsuario">Cadastrar</a> </h4>
-
 
 </body>
 

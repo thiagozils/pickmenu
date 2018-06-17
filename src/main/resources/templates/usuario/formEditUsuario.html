@@ -1,26 +1,49 @@
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
 xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
 
-<head>
+<head th:include="fragments/header :: head (title='Editar Usuário')">
 <meta charset="UTF-8" />
-<title>Cadastro Usuário</title>
+
+<link rel="stylesheet" href="../assets/styles.css">
 </head>
 <body>
 
-<h1>Cadastro Usuário</h1>
+<div th:replace="fragments/header :: header">&nbsp;</div>
 
+<div class="row">
+ <div class="col-md-6" id="centralize">
+<h4>Editar Usuário</h4>
 <form method="post" th:each="usuario : ${usuario}">
-
-
-Nome : <input type="text" value="" name="nome" id="name" th:value="${usuario.nome}">
-Email : <input type="text" value="" name="email" th:value="${usuario.email}">
-Senha : <input type="password" value="" name="senha" th:value="${usuario.senha}">
-
-<button type="submit">Salvar</button>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="name">Nome</label>
+      <input type="text" value="" name="nome" id="name" class="form-control" th:value="${usuario.nome}" placeholder="Nome">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputPassword4">Senha</label>
+      <input type="password" value="" name="senha" th:value="${usuario.senha}" class="form-control" placeholder="Senha">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="text" value="" name="email" id="email" th:value="${usuario.email}" class="form-control" placeholder="email@dominio.com">
+  </div>
+<input name="id"  value="" type="hidden" th:value="${usuario.id}"/> 
+  <button type="submit" class="btn btn-primary">Salvar</button>
+   <a class="btn btn-light">Voltar</a>
 </form>
 
-<h4><a href="/usuarios" > Voltar</a></h4>
+</div>
+
+</div>
+
+
+
+
+
 </body>
 
 

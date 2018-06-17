@@ -3,6 +3,7 @@ package br.org.catolicasc.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,19 +41,29 @@ public class UsuarioController {
 		
 		return mv;
 	}
-	@RequestMapping(value = "/editarUsuario", method = RequestMethod.POST)
-	public String editarUsuario(Usuario usuario) {
-		
-		
-		Usuario user = usuarioRepository.findById(usuario.getId());
-		user.setEmail(usuario.getEmail());
-		user.setNome(usuario.getNome());
-		user.setSenha(usuario.getSenha());
-		
-		usuarioRepository.save(user);
 	
+	@RequestMapping(value = "/editarUsuario", method = RequestMethod.POST)
+	public String editarUsuario(Usuario user) {
+		
+		System.out.println(user.getId()+" "+user.getNome());
+		
+		Usuario findUser = usuarioRepository.findById(user.getId());
+		findUser.setNome(user.getNome());
+		findUser.setEmail(user.getEmail());
+		findUser.setSenha(user.getSenha());
+		
+		
+		usuarioRepository.save(findUser);
+		
+		
+
 		return "redirect:/usuarios";
 	}
+
+	
+	
+
+
 	
 
 	@RequestMapping(value = "/cadastrarUsuario", method = RequestMethod.POST)

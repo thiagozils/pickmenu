@@ -1,13 +1,17 @@
-<html>
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
 
-<head></head>
+
+<head th:include="fragments/header :: head (title='Pick Menu')">
+
+
+<meta charset="UTF-8" />
+
+</head>
 <body>
 
-<h3>Ola undo com spring</h3>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
 </body>
-
-<h4><a href="/usuarios" > Usuários</a></h4>
-
-
-
 </html>
