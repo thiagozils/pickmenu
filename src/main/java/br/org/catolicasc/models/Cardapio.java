@@ -18,6 +18,7 @@ public class Cardapio {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
 	@ManyToMany(mappedBy = "cardapios", cascade = CascadeType.ALL)
 	private List<Prato> pratos;
 	
@@ -60,3 +61,4 @@ public class Cardapio {
 	}
 
 }
+
