@@ -22,6 +22,7 @@ public class Prato {
 	@ManyToOne
 	private CategoriaPrato categoriaPrato;
 	private Double calorias;
+	
 	@ManyToMany
 	private List<Cardapio> cardapios;
 	
