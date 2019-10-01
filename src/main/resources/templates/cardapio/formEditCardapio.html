@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+
+<head
+	th:include="fragments/header :: head (title='Cadastro de Cardapio')">
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../assets/styles.css">
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="row">
+		<div class="col-md-6" id="centralize">
+			<h4>Editar Cardápio</h4>
+			<form method="post" th:each="cardapio : ${cardapio}">
+
+				<div class="form-group">
+					<label for="restaurante">Restaurante</label> <select
+						class="form-control" id="restaurante" name="restaurante">
+
+						<option th:each="restaurante : ${restaurantes}"
+							th:value="${restaurante.id}"><span
+								th:text="${restaurante.nome}"></span>
+						</option>
+
+						<option th:value="${cardapio.restaurante.id}" selected><span
+								th:text="${cardapio.restaurante.nome}"></span>
+						</option>
+					</select>
+					<input name="id"  value="" type="hidden" th:value="${cardapio.id}"/> 
+
+				</div>
+
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="data">Data</label> <input type="date" value=""
+							name="data" class="form-control" placeholder="Data" th:value="${cardapio.data}">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="preco">Preço</label> <input type="number" value=""
+							name="preco" th:value="${cardapio.preco}" class="form-control" placeholder="Preço">
+					</div>
+				</div>
+				Pratos
+				<div class="form-row align-items-center">
+
+					<div class="form-group col-md-6">
+						<select class="form-control" id="myInput">
+							<option th:each="prato : ${pratos}" th:value="${prato.id}"
+								th:text="${prato.nome}"></option>
+						</select>
+					</div>
+					<input type="hidden" name="pratos" id="pratos" value="">
+
+					<div class="form-group">
+						<a onclick="newElement()"><button type="button"
+								class="btn btn-outline-primary">Adicionar</button></a>
+					</div>
+				</div>
+
+				<ul id="myUL" class="col-md-6" style="list-style-type: none;">
+					<li class="pratos" th:each="pratoSelected:${cardapio.pratos}" th:id="'idpai' + ${pratoSelected.id}" >
+						<span th:text="${pratoSelected.nome}" ></span>
+					</li>
+				</ul>
+
+				<button type="submit" class="btn btn-primary">Salvar</button>
+				<a class="btn btn-light" href="/cardapios">Voltar</a>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		// Create a "close" button and append it to each list item
+		
+		var myNodelist = document.getElementsByClassName("pratos");
+		var i;
+		for (i = 0; i < myNodelist.length; i++) {
+			var id = myNodelist[i].id;
+			id = id.replace("idpai","id");
+			var span = document.createElement("SPAN");
+			var txt = document.createTextNode("\u00D7");
+			span.id = id;
+			
+			document.getElementById("pratos").value = document.getElementById("pratos").value + id.replace("id","")+",";
+			
+			span.className = "close";
+			span.appendChild(txt);
+			myNodelist[i].appendChild(span);
+		}
+
+		
+		// Click on a close button to hide the current list item
+		var close = document.getElementsByClassName("close");
+
+		var i;
+		for (i = 0; i < close.length; i++) {
+			close[i].onclick = function() {
+				
+				var id = this.id;
+				var id = id.replace("id", "");
+				id = id + ",";
+				var elt = document.getElementById("myInput");
+				var pratos = document.getElementById("pratos");
+				document.getElementById("pratos").value = document
+						.getElementById("pratos").value.replace(id, "");
+				var div = this.parentElement;
+				div.style.display = "none";
+			}
+		}
+
+		// Create a new list item when clicking on the "Add" button
+		function newElement() {
+			var li = document.createElement("li");
+			li.className = "pratos";
+
+			var elt = document.getElementById("myInput");
+			var pratos = document.getElementById("pratos");
+
+			if (pratos.value.includes(elt.value + ",")) {
+
+			} else {
+
+				pratos.value = pratos.value + elt.value + ",";
+
+				var inputValue = elt.options[elt.selectedIndex].text;
+				var t = document.createTextNode(inputValue);
+				li.appendChild(t);
+
+				if (inputValue === '') {
+					alert("You must write something!");
+				} else {
+					document.getElementById("myUL").appendChild(li);
+				}
+				var span = document.createElement("SPAN");
+				var txt = document.createTextNode("\u00D7");
+				span.className = "close";
+
+				span.id = 'id' + elt.value;
+
+				span.appendChild(txt);
+				li.appendChild(span);
+				for (i = 0; i < close.length; i++) {
+					close[i].onclick = function() {
+
+						var id = this.id;
+						var id = id.replace("id", "");
+						id = id + ",";
+						var elt = document.getElementById("myInput");
+						var pratos = document.getElementById("pratos");
+						document.getElementById("pratos").value = document
+								.getElementById("pratos").value.replace(id, "");
+
+						var div = this.parentElement;
+						div.style.display = "none";
+					}
+				}
+			}
+		}
+	</script>
+
+
+</body>
+
+</html>

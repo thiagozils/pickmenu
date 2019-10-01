@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="fragments/header :: head (title='Restaurantes')">
+<meta charset="UTF-8" />
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+
+
+	<div class="container">
+		<div class="" id="centralize">
+			<h4>Restaurantes</h4>
+			<table class="table table-striped custab">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Cidade</th>
+						<th>Endereço</th>
+						<th>Telefone</th>
+						<th>Categoria</th>
+						<th style="text-align: center">Ação</th>
+					</tr>
+				</thead>
+				<tr th:each="restaurante : ${restaurantes}">
+					<td><span th:text="${restaurante.id}"></span></td>
+					<td><span th:text="${restaurante.nome}"></span></td>
+					<td><span th:text="${restaurante.cidade}"></span></td>
+					<td><span th:text="${restaurante.endereco}"></span></td>
+					<td><span th:text="${restaurante.telefone}"></span></td>
+					<td><span th:text="${restaurante.categoriaRestaurante.nome}"></span></td>
+					
+
+					<td class="text-center"><a class='btn btn-info btn-xs'
+						th:href="@{'/editarRestaurante?codigo=' + ${restaurante.id}}"><span
+							class="glyphicon glyphicon-edit"></span> Edit</a> <a
+						class="btn btn-danger btn-xs"
+						th:href="${(#mvc.url('RC#deletarRestaurante').arg(0, restaurante.id)).build()}">
+						<span class="glyphicon glyphicon-remove"></span> Del</a></td>
+				</tr>
+
+
+			</table>
+			
+							<a href="/cadastrarRestaurante"
+					class="btn btn-primary btn-xs pull-right"><b>+</b> Cadastrar</a>
+			
+		</div>
+
+	</div>
+
+</body>
+
+
+
+</html>

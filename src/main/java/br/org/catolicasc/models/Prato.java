@@ -1,11 +1,14 @@
-package br.org.catolicasc.bean;
+package br.org.catolicasc.models;
 
 import java.util.List;
 
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -23,7 +26,7 @@ public class Prato {
 	private CategoriaPrato categoriaPrato;
 	private Double calorias;
 	
-	@ManyToMany
+	@ManyToMany(mappedBy = "pratos", cascade = CascadeType.ALL)
 	private List<Cardapio> cardapios;
 	
 	public Long getId() {
@@ -62,9 +65,6 @@ public class Prato {
 		return calorias;
 	}
 	
-	public void setCalorias(double calorias) {
-		this.calorias = calorias;
-	}
 
 	public List<Cardapio> getCardapios() {
 		return cardapios;

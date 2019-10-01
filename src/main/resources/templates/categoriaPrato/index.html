@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="fragments/header :: head (title='CategoriaPrato')">
+<meta charset="UTF-8" />
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet"
+	href="materialize/css/materialize.min.css" media="screen,projection" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+
+
+	<div class="container">
+		<div class="" id="centralize">
+			<h4>Categorias de Pratos</h4>
+			<table class="table table-striped custab">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th>Descrição</th>
+						<th style="text-align: center">Ação</th>
+					</tr>
+				</thead>
+				<tr th:each="categoriaPrato : ${categoriasPratos}">
+					<td><span th:text="${categoriaPrato.id}"></span></td>
+					<td><span th:text="${categoriaPrato.nome}"></span></td>
+					<td><span th:text="${categoriaPrato.descricao}"></span></td>
+					<td class="text-center"><a class='btn btn-info btn-xs'
+						th:href="@{'/editarCategoriaPrato?codigo=' + ${categoriaPrato.id}}"><span
+							class="glyphicon glyphicon-edit"></span> Edit</a> <a
+						class="btn btn-danger btn-xs"
+						th:href="${(#mvc.url('CPC#deletarCategoriaPrato').arg(0, categoriaPrato.id)).build()}">
+						<span class="glyphicon glyphicon-remove"></span> Del</a></td>
+				</tr>
+
+
+			</table>
+			
+							<a href="/cadastrarCategoriaPrato"
+					class="btn btn-primary btn-xs pull-right"><b>+</b> Cadastrar</a>
+			
+		</div>
+
+	</div>
+
+</body>
+
+
+
+</html>

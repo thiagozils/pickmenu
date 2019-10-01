@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="fragments/header :: head (title='Editar Restaurante')">
+<meta charset="UTF-8" />
+
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="row">
+		<div class="col-md-6" id="centralize">
+			<h4>Editar Restaurante</h4>
+
+			<form method="post" th:each="restaurante : ${restaurante}">
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="name">Nome</label> <input type="text" value=""
+							name="nome" class="form-control" th:value="${restaurante.nome}"
+							placeholder="Nome">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="cidade">Cidade</label> <input type="text"
+							name="cidade" class="form-control"
+							th:value="${restaurante.cidade}" placeholder="Cidade">
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="endereco">Endereço</label> <input type="text" value=""
+							name="endereco" class="form-control"
+							th:value="${restaurante.endereco}" placeholder="Rua,Bairro,nº">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="telefone">Telefone</label> <input type="text" value=""
+							name="telefone" class="form-control"
+							th:value="${restaurante.telefone}" placeholder="(DDD) 000000000">
+					</div>
+				</div>
+				<input name="id"  value="" type="hidden" th:value="${restaurante.id}"/> 
+				<div class="form-group">
+					<label for="categoriaRestaurante">Categoria Restaurante</label> <select
+						class="form-control" id="categoriaRestaurante"
+						name="categoriaRestaurante">
+
+						<option th:each="categoriaRestaurante : ${categoriasRestaurantes}"
+							th:value="${categoriaRestaurante.id}"><span
+								th:text="${categoriaRestaurante.nome}"></span>
+						</option>
+						
+						<option	th:value="${restaurante.categoriaRestaurante.id}" selected><span
+								th:text="${restaurante.categoriaRestaurante.nome}"></span>
+					</option>
+					</select>
+				</div>
+
+				<button type="submit" class="btn btn-primary">Salvar</button>
+
+				<a href="/restaurantes" class="btn btn-light">Voltar</a>
+			</form>
+
+		</div>
+
+	</div>
+
+
+
+
+
+</body>
+
+
+
+</html>

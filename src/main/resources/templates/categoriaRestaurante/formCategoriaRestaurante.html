@@ -2,7 +2,7 @@
 <html xmlns:th="http://thymeleaf.org"
 xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
 
-<head th:include="fragments/header :: head (title='Cadastro de Usuário')">
+<head th:include="fragments/header :: head (title='Cadastro de Categoria Restaurante')">
 <meta charset="UTF-8" />
 
 <link rel="stylesheet" href="../assets/styles.css">
@@ -13,26 +13,22 @@ xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
 
 <div class="row">
  <div class="col-md-6" id="centralize">
-<h4>Cadastro de Usuário</h4>
+<h4>Cadastro de Categoria de Restaurante</h4>
 <form method="post">
   <div class="form-row">
+  
     <div class="form-group col-md-6">
       <label for="name">Nome</label>
-      <input type="text" value="" name="nome" id="name" class="form-control" placeholder="Nome">
+      <input type="text"  name="nome" id="name" class="form-control" placeholder="Nome">
     </div>
     <div class="form-group col-md-6">
-      <label for="inputPassword4">Senha</label>
-      <input type="password" value="" name="senha" class="form-control" placeholder="Senha">
+      <label for="descricao">Descrição</label>
+      <input type="text" name="descricao" class="form-control" placeholder="Descricao">
     </div>
-  </div>
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="text" value="" name="email" id="email" class="form-control" placeholder="email@dominio.com">
   </div>
 
   <button type="submit" class="btn btn-primary">Salvar</button>
-  
-   <a href="/usuarios" class="btn btn-light">Voltar</a>
+   <a class="btn btn-light" href="/categoriasRestaurantes">Voltar</a>
 </form>
 
 </div>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+
+
+<head th:include="fragments/header :: head (title='Pick Menu')">
+
+
+<meta charset="UTF-8" />
+
+</head>
+<body>
+
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="container">
+		<div class="" id="centralize">
+			<h4>Resultado da busca:</h4>
+			<table class="table table-striped custab">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Restaurante</th>
+						<th>Data</th>
+						<th>Preço</th>
+						<th style="text-align: center">Ação</th>
+					</tr>
+				</thead>
+				<tr th:each="cardapio : ${cardapios}">
+					<td><span th:text="${cardapio.id}"></span></td>
+					<td><span th:text="${cardapio.restaurante.nome}"></span></td>
+					<td><span th:text="${cardapio.data}"></span></td>
+					<td><span th:text="${cardapio.preco}"></span></td>
+					<td class="text-center">
+					
+					<a class='btn btn-secondary btn-xs' th:href="@{'/detalhesPesquisa?codigo=' + ${cardapio.id}}">
+						 Detalhes</a>		
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

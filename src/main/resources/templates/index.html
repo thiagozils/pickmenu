@@ -13,5 +13,37 @@
 
 <div th:replace="fragments/header :: header">&nbsp;</div>
 
+
+
+<div class="row">
+ <div class="col-md-6" id="centralize">
+ 
+ <center>
+ 	<img id="logo" src="https://i.imgur.com/DhNClKy.png">
+ </center>
+
+<form class="form-inline" action="/search" method="post" >
+
+
+  <div class="input-group col-md-6" id="centralize" style="padding-left: 10%">
+  <center>
+<select	class="form-control" name="codigo">
+						<option th:each="restaurante : ${restaurantes}"
+							th:value="${restaurante.id}"><span
+								th:text="${restaurante.nome}"></span>
+						</option></select>
+						<button type="submit" class="btn btn-light">Buscar</button>			
+  </center>
+  </div>
+
+
+  
+</form>
+
+</div>
+</div>
+
+
+
 </body>
 </html>

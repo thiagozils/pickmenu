@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+
+<head
+	th:include="fragments/header :: head (title='Cadastro de Cardapio')">
+<meta charset="UTF-8" />
+<link rel="stylesheet" href="../assets/styles.css">
+
+</head>
+<body>
+
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+
+	<div class="row">
+		<div class="col-md-6" id="centralize" th:each="cardapio : ${cardapio}">
+			<h4 th:text="${cardapio.restaurante.nome}"></h4>
+			<h6 th:text="${cardapio.data}"></h6>
+			
+			<br>
+			<h5>R$ <span th:text="${cardapio.preco}"></span> </h5>
+			<br>
+			
+			<h5>Pratos do Dia</h5>
+			<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Descrição</th>
+      <th scope="col">Categoria</th>
+      <th scope="col">Calorias</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="prato : ${cardapio.pratos}">
+    
+      <th scope="row"><span th:text="${prato.nome}"></span></th>
+      <td><span th:text="${prato.descricao}"></span></td>
+      <td><span th:text="${prato.categoriaPrato.nome}"></span></td>
+      <td><span th:text="${prato.calorias}"></span></td>
+      
+    </tr>
+
+  </tbody>
+</table>
+			
+			
+			
+			
+				<a class="btn btn-light" href="/">Voltar</a>
+	
+		</div>
+	</div>
+
+
+</body>
+
+</html>

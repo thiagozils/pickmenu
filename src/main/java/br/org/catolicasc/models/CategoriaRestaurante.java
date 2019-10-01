@@ -1,4 +1,4 @@
-package br.org.catolicasc.bean;
+package br.org.catolicasc.models;
 
 import java.util.List;
 

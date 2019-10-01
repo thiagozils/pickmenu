@@ -1,0 +1,47 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+xmlns:layout="http://ultraq.net.nz/thymeleaf/layout">
+
+<head th:include="fragments/header :: head (title='Editar Categoria Restaurante')">
+<meta charset="UTF-8" />
+
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+
+<div th:replace="fragments/header :: header">&nbsp;</div>
+
+<div class="row">
+ <div class="col-md-6" id="centralize">
+<h4>Editar Categoria Restaurante</h4>
+<form method="post" th:each="categoriaRestaurante : ${categoriaRestaurante}">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="name">Nome</label>
+      <input type="text" value="" name="nome" id="name" class="form-control" th:value="${categoriaRestaurante.nome}" placeholder="Nome">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="text">Descrição</label>
+      <input type="text" value="" name="descricao" th:value="${categoriaRestaurante.descricao}" class="form-control" placeholder="Descricao">
+    </div>
+  </div>
+<input name="id"  value="" type="hidden" th:value="${categoriaRestaurante.id}"/> 
+  <button type="submit" class="btn btn-primary">Salvar</button>
+   <a class="btn btn-light" href="/categoriasRestaurantes">Voltar</a>
+</form>
+
+</div>
+
+</div>
+
+
+
+
+
+</body>
+
+
+
+</html>

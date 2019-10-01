@@ -1,4 +1,4 @@
-package br.org.catolicasc.bean;
+package br.org.catolicasc.models;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -19,7 +21,11 @@ public class Cardapio {
 	@GeneratedValue
 	private Long id;
 	
-	@ManyToMany(mappedBy = "cardapios", cascade = CascadeType.ALL)
+	@ManyToMany
+	 @JoinTable(
+		     joinColumns={@JoinColumn(name="cardapios_id",referencedColumnName="id")},  
+		     inverseJoinColumns={@JoinColumn(name="pratos_id", referencedColumnName="id")}
+	)
 	private List<Prato> pratos;
 	
 	@ManyToOne
@@ -61,4 +67,3 @@ public class Cardapio {
 	}
 
 }
-
